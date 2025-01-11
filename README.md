@@ -61,27 +61,49 @@ Leave "Create DNS delegation" unchecked and click "Next". Hit "Next" until you r
 
 It may take some time to restart, but once it does, sign back in using "mydomain.com\labuser" (if you're using the same names as me) as the username. Use the password you set for "labuser". Here we have to sign in as "mydomain.com\labuser" instead of just "labuser", because now we've promoted this machine to a DC and it needs to know the context of who we're siging in as (someone in the domain, or a local user). I want to sign in as a user on the domain, so I specify that with the leading "mydomain.com\" part at sign in:
 
-
+![image](https://github.com/user-attachments/assets/60a0f0a9-1b3e-4a05-a89e-57e7fb275a45)
 
 Now, we'll create an admin user. To do this, in the start search bar, search for "Active Directory Users and Computers":
 
+![image](https://github.com/user-attachments/assets/efcf9b04-d7c4-46ae-98b8-1d78206bee0c)
+
 Right click on "mydomain.com" and select "New" > "Organizational Unit" and name it EXACTLY "_EMPLOYEES" (In a future project we will run a script that uses this name to work). Do the same steps here to create an OU (Organizational Unit) named "_ADMINS":
+
+![image](https://github.com/user-attachments/assets/289a731e-662d-44b6-9e25-77fe7606a68c)
+
+![image](https://github.com/user-attachments/assets/c692310d-4a22-4b84-a6fc-b35966586a97)
 
 Next, create a new user in "_ADMINS" by right-clicking on "_ADMINS" > New > User and fill it out like so:
 
+
+
 Then, create a password and uncheck "User must change password at next logon" and check "Password never expires" (You probably wouldn't do this in real life, but we'll do it for this lab where nothing's really at stake):
+
+
 
 Jane Doe is now apart of the "_ADMINS" OU, but isn't actually an admin. To make her an admin right-click on her name > Properties > Member Of > Add... > Enter "domain admins" > Check Names > OK > Apply > OK:
 
+
+
 Now, we can log out of DC and log back in using Jane's credentials:
+
+
 
 Once logged in, log into client-1 VM, if not already. Here I'll join this client to the domain by right-clicking the start menu > Systems > Rename this PC (advanced) > Change > Select "Domain" and enter "mydomain.com" and hit "OK":
 
+
+
 It'll ask for an account with permission to join the domain. We can use our admin's credentials for Jane here. Then a pop up saying welcome to the domain will appear and the machine will try and restart:
+
+
 
 After the restart, client-1 is now a member of the domain. To check, in the DC machine start seach bar, search for "Active Directory Users and Computers" > mydomain.com > Computers > client-1 should be listed:
 
+
+
 Now we can create another OU as we did before and name it "_CLIENTS". Then drag and drop client-1 from "computers" to "_CLIENTS":
+
+
 
 <h2>Active Directory is Deployed and Ready for Use! </h2>
 
