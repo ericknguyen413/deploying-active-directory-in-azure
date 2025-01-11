@@ -75,15 +75,15 @@ Right click on "mydomain.com" and select "New" > "Organizational Unit" and name 
 
 Next, create a new user in "_ADMINS" by right-clicking on "_ADMINS" > New > User and fill it out like so:
 
-
+![image](https://github.com/user-attachments/assets/58d96969-c9cd-4626-96d5-d032923bbe3c)
 
 Then, create a password and uncheck "User must change password at next logon" and check "Password never expires" (You probably wouldn't do this in real life, but we'll do it for this lab where nothing's really at stake):
 
-
+![image](https://github.com/user-attachments/assets/318b4834-a972-46a9-bd94-ec7fdfa348bc)
 
 Jane Doe is now apart of the "_ADMINS" OU, but isn't actually an admin. To make her an admin right-click on her name > Properties > Member Of > Add... > Enter "domain admins" > Check Names > OK > Apply > OK:
 
-
+![image](https://github.com/user-attachments/assets/e2f22a59-5c56-424a-834a-da5e6f550197)
 
 Now, we can log out of DC and log back in using Jane's credentials:
 
