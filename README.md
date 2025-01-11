@@ -87,23 +87,27 @@ Jane Doe is now apart of the "_ADMINS" OU, but isn't actually an admin. To make 
 
 Now, we can log out of DC and log back in using Jane's credentials:
 
-
+![image](https://github.com/user-attachments/assets/a0accb69-d4d3-48b1-bef9-562df7bf1ca6)
 
 Once logged in, log into client-1 VM, if not already. Here I'll join this client to the domain by right-clicking the start menu > Systems > Rename this PC (advanced) > Change > Select "Domain" and enter "mydomain.com" and hit "OK":
 
-
+![image](https://github.com/user-attachments/assets/b864f1a9-a1c9-47e2-b103-e283fc3f34b5)
 
 It'll ask for an account with permission to join the domain. We can use our admin's credentials for Jane here. Then a pop up saying welcome to the domain will appear and the machine will try and restart:
 
-
+![image](https://github.com/user-attachments/assets/07466961-4b6d-4eb4-ac79-dc288ff9a769)
 
 After the restart, client-1 is now a member of the domain. To check, in the DC machine start seach bar, search for "Active Directory Users and Computers" > mydomain.com > Computers > client-1 should be listed:
 
-
+![image](https://github.com/user-attachments/assets/3483ff6d-d7f0-494b-8b9a-537d8d8a94dd)
 
 Now we can create another OU as we did before and name it "_CLIENTS". Then drag and drop client-1 from "computers" to "_CLIENTS":
 
+![image](https://github.com/user-attachments/assets/9f863873-5caa-4a46-aae8-c324821a4d51)
 
+![image](https://github.com/user-attachments/assets/4e9e4e02-7a7c-4a22-a77e-47dc9cf99c89)
+
+![image](https://github.com/user-attachments/assets/ea55c35b-e01c-40a4-a9c1-8c893b752aaa)
 
 <h2>Active Directory is Deployed and Ready for Use! </h2>
 
