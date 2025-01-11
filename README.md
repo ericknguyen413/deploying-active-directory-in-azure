@@ -27,43 +27,61 @@ This project is a continuation of [Active Directory: Preparing Infrastructure in
 
 <h2>Project Walk-through:</h2>
 
-To start, in the DC (Domain Controller), bring up the Server Manager dashboard, if it's not up already: <br/>
+To start, in the DC (Domain Controller), bring up the Server Manager dashboard, if it's not up already:
 
-Here, click on "Add roles and features" > Next > Next > For server selection there should only be one to select: <br/>
+![image](https://github.com/user-attachments/assets/fc6b0e3b-f6cf-4a7e-ba25-9eab607396d0)
 
-Now, check "Active Directory Domain Services" > Click "Add Features":  <br/>
+Here, click on "Add roles and features" > Next > Next > For server selection there should only be one to select:
 
-Select "Active Directory Domain Services" > Next > Next > Next > Now select "Restart the destination server automatically if required" and click "Install": <br/>
+![image](https://github.com/user-attachments/assets/01559a6a-4168-4d94-b81e-97c7e70d2b30)
 
-Next, I have to promote this machine as a DC by configuring it as a new forest as "mydomain.com" (this can be anything, mydomain.com is just easy to remember) So, to do this, I will click on the flag icon with the caution symbol, near the top-right of the Server Manager Dashboard and select "Promote this server to a domain controller":  <br/>
+Now, check "Active Directory Domain Services" > Click "Add Features":
 
-Then select "Add new forest" and in "Root domain name" I'll type "mydomain.com". Then "Next":  <br/>
+![image](https://github.com/user-attachments/assets/6241e822-66f6-4023-8da5-d13bca966020)
 
-Type in a password of your choosing on the next screen like so then hit "Next":  <br/>
+Select "Active Directory Domain Services" > Next > Next > Next > and click "Install":
 
-Leave "Create DNS delegation" unchecked and click "Next". Hit "Next" until you reach this screen. On this screen, click "Install". The machine will restart after the installation:  <br/>
+![image](https://github.com/user-attachments/assets/16da9844-b774-4f08-af31-8ccd23525149)
 
-It may take some time to restart, but once it does, sign back in using "mydomain.com\labuser" (if you're using the same names as me) as the username. Use the password you set for "labuser". Here we have to sign in as "mydomain.com\labuser" instead of just "labuser", because now we've promoted this machine to a DC and it needs to know the context of who we're siging in as (someone in the domain, or a local user). I want to sign in as a user on the domain, so I specify that with the leading "mydomain.com\" part at sign in:  <br/>
+Next, I have to promote this machine as a DC by configuring it as a new forest as "mydomain.com" (this can be anything, mydomain.com is just easy to remember) So, to do this, I will click on the flag icon with the caution symbol, near the top-right of the Server Manager Dashboard and select "Promote this server to a domain controller":
 
-Now, we'll create an admin user. To do this, in the start search bar, search for "Active Directory Users and Computers":  <br/>
+![image](https://github.com/user-attachments/assets/2e1b6844-93cb-4de3-aa5a-4b81ca4ea79c)
 
-Right click on "mydomain.com" and select "New" > "Organizational Unit" and name it EXACTLY "_EMPLOYEES" (In a future project we will run a script that uses this name to work). Do the same steps here to create an OU (Organizational Unit) named "_ADMINS":  <br/>
+Then select "Add new forest" and in "Root domain name" I'll type "mydomain.com". Then "Next":
 
-Next, create a new user in "_ADMINS" by right-clicking on "_ADMINS" > New > User and fill it out like so:  <br/>
+![image](https://github.com/user-attachments/assets/82018778-fd57-467b-8f16-1141113d9d64)
 
-Then, create a password and uncheck "User must change password at next logon" and check "Password never expires" (You probably wouldn't do this in real life, but we'll do it for this lab where nothing's really at stake):  <br/>
+Type in a password of your choosing on the next screen like so then hit "Next":
 
-Jane Doe is now apart of the "_ADMINS" OU, but isn't actually an admin. To make her an admin right-click on her name > Properties > Member Of > Add... > Enter "domain admins" > Check Names > OK > Apply > OK:  <br/>
+![image](https://github.com/user-attachments/assets/b11edebb-b7d4-4270-8a61-9423c7fedbee)
 
-Now, we can log out of DC and log back in using Jane's credentials:  <br/>
+Leave "Create DNS delegation" unchecked and click "Next". Hit "Next" until you reach this screen. On this screen, click "Install". The machine will restart after the installation:
 
-Once logged in, log into client-1 VM, if not already. Here I'll join this client to the domain by right-clicking the start menu > Systems > Rename this PC (advanced) > Change > Select "Domain" and enter "mydomain.com" and hit "OK":  <br/>
+![image](https://github.com/user-attachments/assets/1a1eb664-ba4f-456c-a784-948665172d81)
 
-It'll ask for an account with permission to join the domain. We can use our admin's credentials for Jane here. Then a pop up saying welcome to the domain will appear and the machine will try and restart:  <br/>
+It may take some time to restart, but once it does, sign back in using "mydomain.com\labuser" (if you're using the same names as me) as the username. Use the password you set for "labuser". Here we have to sign in as "mydomain.com\labuser" instead of just "labuser", because now we've promoted this machine to a DC and it needs to know the context of who we're siging in as (someone in the domain, or a local user). I want to sign in as a user on the domain, so I specify that with the leading "mydomain.com\" part at sign in:
 
-After the restart, client-1 is now a member of the domain. To check, in the DC machine start seach bar, search for "Active Directory Users and Computers" > mydomain.com > Computers > client-1 should be listed:  <br/>
 
-Now we can create another OU as we did before and name it "_CLIENTS". Then drag and drop client-1 from "computers" to "_CLIENTS":  <br/>
+
+Now, we'll create an admin user. To do this, in the start search bar, search for "Active Directory Users and Computers":
+
+Right click on "mydomain.com" and select "New" > "Organizational Unit" and name it EXACTLY "_EMPLOYEES" (In a future project we will run a script that uses this name to work). Do the same steps here to create an OU (Organizational Unit) named "_ADMINS":
+
+Next, create a new user in "_ADMINS" by right-clicking on "_ADMINS" > New > User and fill it out like so:
+
+Then, create a password and uncheck "User must change password at next logon" and check "Password never expires" (You probably wouldn't do this in real life, but we'll do it for this lab where nothing's really at stake):
+
+Jane Doe is now apart of the "_ADMINS" OU, but isn't actually an admin. To make her an admin right-click on her name > Properties > Member Of > Add... > Enter "domain admins" > Check Names > OK > Apply > OK:
+
+Now, we can log out of DC and log back in using Jane's credentials:
+
+Once logged in, log into client-1 VM, if not already. Here I'll join this client to the domain by right-clicking the start menu > Systems > Rename this PC (advanced) > Change > Select "Domain" and enter "mydomain.com" and hit "OK":
+
+It'll ask for an account with permission to join the domain. We can use our admin's credentials for Jane here. Then a pop up saying welcome to the domain will appear and the machine will try and restart:
+
+After the restart, client-1 is now a member of the domain. To check, in the DC machine start seach bar, search for "Active Directory Users and Computers" > mydomain.com > Computers > client-1 should be listed:
+
+Now we can create another OU as we did before and name it "_CLIENTS". Then drag and drop client-1 from "computers" to "_CLIENTS":
 
 <h2>Active Directory is Deployed and Ready for Use! </h2>
 
